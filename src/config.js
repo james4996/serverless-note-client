@@ -3,17 +3,17 @@ const dev = {
   STRIPE_KEY: "pk_test_zoUR2povw9dKsVmNkYlYiSY3",
   s3: {
     REGION: "eu-west-1",
-    BUCKET: "notes-app-2-api-dev-attachmentsbucket-1ad3blxu54mu3"
+    BUCKET: "notes-app-ext-uploads-dev-s3bucket-mxtnxjjzuoeu"
   },
   apiGateway: {
     REGION: "eu-west-1",
-    URL: "https://api.tantami.net/dev"
+    URL: "https://dev.n-api.tantami.net"
   },
   cognito: {
     REGION: "eu-west-1",
-    USER_POOL_ID: "eu-west-1_MsAFumKuz",
-    APP_CLIENT_ID: "3soph1c7j8gr8c27ms16b2hlm1",
-    IDENTITY_POOL_ID: "eu-west-1:71d4a6a2-999c-4075-84a3-ab6168776a33"
+    USER_POOL_ID: "eu-west-1_jMFLzk3AV",
+    APP_CLIENT_ID: "4t4011q4dbra1mqokm2tom51l5",
+    IDENTITY_POOL_ID: "eu-west-1:042d85eb-d177-453f-acd0-23f9266e7ae0"
   }
 };
 
@@ -22,17 +22,17 @@ const prod = {
   STRIPE_KEY: "pk_test_zoUR2povw9dKsVmNkYlYiSY3",
   s3: {
     REGION: "eu-west-1",
-    BUCKET: "notes-app-2-api-prod-attachmentsbucket-1jeea7w2ym34l"
+    BUCKET: "notes-app-ext-uploads-prod-s3bucket-yjv2gg5nxgid"
   },
   apiGateway: {
     REGION: "eu-west-1",
-    URL: "https://api.tantami.net/prod"
+    URL: "https://prod.n-api.tantami.net"
   },
   cognito: {
     REGION: "eu-west-1",
-    USER_POOL_ID: "eu-west-1_WvuwU4EeS",
-    APP_CLIENT_ID: "681p58vb6al5l4rs4cia8p7php",
-    IDENTITY_POOL_ID: "eu-west-1:7b0c160a-cecc-4a04-ae85-7c89dd5c4675"
+    USER_POOL_ID: "eu-west-1_qYLHE7EGC",
+    APP_CLIENT_ID: "2c5gldbgek7gbp27t1qbb4j1ab",
+    IDENTITY_POOL_ID: "eu-west-1:f396a833-4faa-4035-8aa9-98d10052c784"
   }
 };
 
