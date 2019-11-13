@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect} from "react";
 import { API, Storage } from "aws-amplify";
 import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import LoaderButton from "../components/LoaderButton";
@@ -160,6 +160,7 @@ export default function Notes(props) {
           >
             Delete
           </LoaderButton>
+          <p>Created:  {new Date(note.createdAt).toLocaleString()}</p>
         </form>
       )}
     </div>
