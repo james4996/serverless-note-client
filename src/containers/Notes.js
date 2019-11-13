@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect} from "react";
 import { API, Storage } from "aws-amplify";
-import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import { FormGroup, FormControl, ControlLabel} from "react-bootstrap";
 import LoaderButton from "../components/LoaderButton";
 import { s3Upload } from "../libs/awsLib";
 import config from "../config";
@@ -77,7 +77,8 @@ export default function Notes(props) {
   
       await saveNote({
         content,
-        attachment: attachment || note.attachment
+        attachment: attachment || note.attachment,
+        lastUpdated: Date.now()
       });
       props.history.push("/");
     } catch (e) {
@@ -160,7 +161,6 @@ export default function Notes(props) {
           >
             Delete
           </LoaderButton>
-          <p>Created:  {new Date(note.createdAt).toLocaleString()}</p>
         </form>
       )}
     </div>
