@@ -3,6 +3,7 @@ import { PageHeader, ListGroup, ListGroupItem } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import { API } from "aws-amplify";
 import { Link } from "react-router-dom";
+import { NotificationManager } from "react-notifications";
 import "./Home.css";
 
 export default function Home(props) {
@@ -19,7 +20,7 @@ export default function Home(props) {
         const notes = await loadNotes();
         setNotes(notes);
       } catch (e) {
-        alert(e);
+        NotificationManager.error(e.message, 'Error', 5000);
       }
   
       setIsLoading(false);

@@ -4,6 +4,7 @@ import LoaderButton from "../components/LoaderButton";
 import config from "../config";
 import { API } from "aws-amplify";
 import { s3Upload } from "../libs/awsLib";
+import { NotificationManager } from "react-notifications";
 import "./NewNote.css";
 
 export default function NewNote(props) {
@@ -23,10 +24,8 @@ export default function NewNote(props) {
     event.preventDefault();
   
     if (file.current && file.current.size > config.MAX_ATTACHMENT_SIZE) {
-      alert(
-        `Please pick a file smaller than ${config.MAX_ATTACHMENT_SIZE /
-          1000000} MB.`
-      );
+      NotificationManager.warning(`Please pick a file smaller than ${config.MAX_ATTACHMENT_SIZE /
+        1000000} MB.`, 'Warning', 5000);
       return;
     }
   
@@ -39,8 +38,9 @@ export default function NewNote(props) {
   
       await createNote({ content, attachment });
       props.history.push("/");
+      NotificationManager.success('Note Created', 'Success!', 5000);
     } catch (e) {
-      alert(e);
+      NotificationManager.error(e.message, 'Error', 5000);
       setIsLoading(false);
     }
   }

@@ -1,10 +1,13 @@
 import React, { useRef, useState, useEffect} from "react";
 import { API, Storage } from "aws-amplify";
-import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
+import { FormGroup, FormControl, ControlLabel} from "react-bootstrap";
 import LoaderButton from "../components/LoaderButton";
 import { s3Upload } from "../libs/awsLib";
+import { NotificationManager } from 'react-notifications';
 import config from "../config";
 import "./Notes.css";
+
+
 
 export default function Notes(props) {
     const file = useRef(null);
@@ -30,7 +33,7 @@ export default function Notes(props) {
         setContent(content);
         setNote(note);
       } catch (e) {
-        alert(e);
+        NotificationManager.error(e.message, 'Error', 5000);
       }
     }
 
@@ -77,11 +80,13 @@ export default function Notes(props) {
   
       await saveNote({
         content,
-        attachment: attachment || note.attachment
+        attachment: attachment || note.attachment,
+        lastUpdated: Date.now()
       });
       props.history.push("/");
+      NotificationManager.success('Note Updated', 'Successful!', 5000);
     } catch (e) {
-      alert(e);
+      NotificationManager.error(e.message, 'Error', 5000);
       setIsLoading(false);
     }
   }
@@ -92,7 +97,7 @@ export default function Notes(props) {
   
   async function handleDelete(event) {
     event.preventDefault();
-  
+
     const confirmed = window.confirm(
       "Are you sure you want to delete this note?"
     );
@@ -106,12 +111,13 @@ export default function Notes(props) {
     try {
       await deleteNote();
       props.history.push("/");
+      NotificationManager.success('Note Deleted', 'Successful!', 5000);
     } catch (e) {
-      alert(e);
+      NotificationManager.error(e.message, 'Error', 5000);
       setIsDeleting(false);
     }
   }
-  
+
   return (
     <div className="Notes">
       {note && (
@@ -160,7 +166,11 @@ export default function Notes(props) {
           >
             Delete
           </LoaderButton>
-          <p>Created:  {new Date(note.createdAt).toLocaleString()}</p>
+          <br/>
+          <p>{"Date Created: " + new Date(note.createdAt).toLocaleString()}</p>
+          {note.lastUpdated !== undefined &&
+            <p>{"Last Updated: " + new Date(note.lastUpdated).toLocaleString()}</p>
+          }
         </form>
       )}
     </div>
