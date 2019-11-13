@@ -9,6 +9,7 @@ import LoaderButton from "../components/LoaderButton";
 import { useFormFields } from "../libs/hooksLib";
 import "./Signup.css";
 import { Auth } from "aws-amplify";
+import { NotificationManager } from "react-notifications";
 
 export default function Signup(props) {
   const [fields, handleFieldChange] = useFormFields({
@@ -45,7 +46,7 @@ export default function Signup(props) {
       setIsLoading(false);
       setNewUser(newUser);
     } catch (e) {
-      alert(e.message);
+      NotificationManager.error(e.message, 'Error', 5000);
       setIsLoading(false);
     }
   }
@@ -61,8 +62,9 @@ export default function Signup(props) {
   
       props.userHasAuthenticated(true);
       props.history.push("/");
+      NotificationManager.success("Account Created", 'Account Created', 5000);
     } catch (e) {
-      alert(e.message);
+      NotificationManager.error(e.message, 'Error', 5000);
       setIsLoading(false);
     }
   }

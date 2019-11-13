@@ -3,6 +3,7 @@ import { Auth } from "aws-amplify";
 import { FormGroup, FormControl, ControlLabel } from "react-bootstrap";
 import LoaderButton from "../components/LoaderButton";
 import { useFormFields } from "../libs/hooksLib";
+import { NotificationManager } from "react-notifications"
 import "./Login.css";
 
 export default function Login(props) {
@@ -25,7 +26,7 @@ export default function Login(props) {
       await Auth.signIn(fields.email, fields.password);
       props.userHasAuthenticated(true);
     } catch (e) {
-      alert(e.message);
+      NotificationManager.warning(e.message, 'Login Error', 5000);
       setIsLoading(false);
     }
   }

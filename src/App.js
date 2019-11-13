@@ -5,6 +5,9 @@ import { Nav, Navbar, NavItem } from "react-bootstrap";
 import Routes from "./Routes";
 import { Auth } from "aws-amplify";
 import "./App.css";
+// React Notification
+import 'react-notifications/lib/notifications.css';
+import { NotificationContainer } from 'react-notifications';
 
 function App(props) {
   const [isAuthenticating, setIsAuthenticating] = useState(true);
@@ -69,6 +72,7 @@ function App(props) {
           </Navbar.Collapse>
         </Navbar>
         <Routes appProps={{ isAuthenticated, userHasAuthenticated }} />
+        <NotificationContainer />
       </div>
     )
   );
